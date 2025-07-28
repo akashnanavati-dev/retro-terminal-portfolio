@@ -1,6 +1,6 @@
 # Retro Terminal Style Portfolio
 
-A unique portfolio website designed to look like a retro terminal interface. This interactive portfolio allows visitors to use terminal commands to explore information about me, my skills, projects, and more.
+A retro-themed, interactive portfolio website that emulates a classic terminal interface. Visitors can explore your background, skills, and projects by typing commands, just like in a real terminal. The site features animated effects, a Matrix-inspired background, mobile-friendly design, and hidden easter eggs for an engaging user experience.
 
 ## Features
 
