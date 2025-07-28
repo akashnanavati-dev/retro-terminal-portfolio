@@ -1,0 +1,548 @@
+/* ======================================
+ * Global Styles and Variables
+ * ====================================== */
+
+/* Import retro terminal font */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Custom icon colors */
+.mongodb-icon {
+    color: #4DB33D; /* MongoDB green color */
+}
+
+/* CSS Variables for consistent theming */
+:root {
+    --terminal-bg: #000;
+    --terminal-text: #0f0;
+    --terminal-glow: 0 0 10px rgba(0, 255, 0, 0.7);
+    --terminal-header-bg: #333;
+    --terminal-font: 'VT323', monospace;
+}
+
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styling */
+body {
+    font-family: var(--terminal-font);
+    background-color: #111;
+    color: var(--terminal-text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* ======================================
+ * Terminal Container Styling
+ * ====================================== */
+
+/* Main terminal window container */
+.terminal-container {
+    width: 90%;
+    max-width: 900px;
+    height: 80vh;
+    background-color: var(--terminal-bg);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======================================
+ * Terminal Header Styling
+ * ====================================== */
+
+/* Header bar with title and control buttons */
+.terminal-header {
+    background-color: var(--terminal-header-bg);
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* Container for window control buttons */
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* Individual window control button */
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+/* Close button (red) */
+.close {
+    background-color: #ff5f56;
+}
+
+/* Minimize button (yellow) */
+.minimize {
+    background-color: #ffbd2e;
+}
+
+/* Maximize button (green) */
+.maximize {
+    background-color: #27c93f;
+}
+
+/* Terminal window title */
+.terminal-title {
+    color: #ddd;
+    font-size: 14px;
+}
+
+/* ======================================
+ * Terminal Content Area
+ * ====================================== */
+
+/* Main content area for terminal output */
+.terminal {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======================================
+ * Custom Scrollbar Styling
+ * ====================================== */
+
+/* Scrollbar width */
+.terminal::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Scrollbar track (background) */
+.terminal::-webkit-scrollbar-track {
+    background: #111;
+}
+
+/* Scrollbar handle */
+.terminal::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+/* ======================================
+ * ASCII Art Header
+ * ====================================== */
+
+/* ASCII art header styling */
+.ascii-header {
+    font-family: monospace;
+    white-space: pre;
+    color: var(--terminal-text);
+    text-shadow: var(--terminal-glow);
+    margin-bottom: 20px;
+    font-size: 12px;
+    animation: pulse 2s infinite;
+}
+
+/* Pulsing glow animation for ASCII header */
+@keyframes pulse {
+    0% {
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(0, 255, 0, 0.9);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    }
+}
+
+/* ======================================
+ * Terminal Output Text
+ * ====================================== */
+
+/* Main terminal output container */
+.terminal-output {
+    flex: 1;
+    margin-bottom: 15px;
+    overflow-y: auto;
+}
+
+/* Basic terminal text output */
+.terminal-output p {
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-size: 18px;
+}
+
+/* ======================================
+ * Terminal Input Line
+ * ====================================== */
+
+/* Container for prompt and input field */
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    position: relative;
+}
+
+/* Command prompt styling */
+.terminal-prompt {
+    color: var(--terminal-text);
+    margin-right: 8px;
+}
+
+/* Input field for user commands */
+#terminal-input {
+    background: transparent;
+    border: none;
+    color: var(--terminal-text);
+    font-family: var(--terminal-font);
+    font-size: 18px;
+    flex: 1;
+    caret-color: transparent;
+    outline: none;
+    position: relative;
+    z-index: 1;
+}
+
+/* ======================================
+ * Blinking Cursor Animation
+ * ====================================== */
+
+/* Terminal cursor styling */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background-color: var(--terminal-text);
+    position: absolute;
+    left: 0;
+    animation: blink 1s step-end infinite;
+    z-index: 0;
+}
+
+/* Blinking animation for cursor */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ======================================
+ * Tech Stack Marquee
+ * ====================================== */
+
+/* Container for scrolling tech stack display */
+.tech-stack-marquee {
+    width: 90%;
+    max-width: 900px;
+    background-color: #111;
+    border-radius: 8px;
+    margin-top: 20px;
+    overflow: hidden;
+    padding: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+/* Scrolling content container */
+.marquee-content {
+    display: flex;
+    animation: scroll 20s linear infinite;
+}
+
+/* Horizontal scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Individual technology icon container */
+.tech-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 30px;
+    color: var(--terminal-text);
+}
+
+/* Icon styling */
+.tech-icon i {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+/* Progress Bars */
+.progress-container {
+    width: 100%;
+    margin: 5px 0 15px 0;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #111;
+    border: 1px solid var(--terminal-text);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--terminal-text);
+    box-shadow: 0 0 8px var(--terminal-text);
+    animation: progressAnimation 1s ease-out;
+}
+
+@keyframes progressAnimation {
+    from { width: 0; }
+}
+
+.progress-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: bold;
+    mix-blend-mode: difference;
+}
+
+/* Projects List */
+.project-item {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-left: 3px solid var(--terminal-text);
+    padding-left: 10px;
+}
+
+.project-title {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+/* ======================================
+ * Modal Dialogs
+ * ====================================== */
+
+/* Modal overlay */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal dialog box */
+.modal-content {
+    background-color: var(--terminal-bg);
+    border: 2px solid var(--terminal-text);
+    box-shadow: 0 0 15px var(--terminal-text);
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Close button for modal */
+.close-modal {
+    color: var(--terminal-text);
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Typewriter Effect */
+.typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid var(--terminal-text);
+    white-space: nowrap;
+    margin: 0;
+    letter-spacing: 0.15em;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--terminal-text) }
+}
+
+/* Matrix Rain Effect (for background) */
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+/* ======================================
+ * Mobile Command Buttons
+ * ====================================== */
+
+/* Container for mobile-friendly command buttons */
+.mobile-commands {
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+/* Individual command button styling */
+.command-btn {
+    background-color: #333;
+    color: var(--terminal-text);
+    border: 1px solid var(--terminal-text);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: var(--terminal-font);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* Hover effect for command buttons */
+.command-btn:hover {
+    background-color: #444;
+    box-shadow: 0 0 8px var(--terminal-text);
+}
+
+/* ======================================
+ * Responsive Design
+ * ====================================== */
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .terminal-container {
+        width: 95%;
+        height: 85vh;
+    }
+    
+    .ascii-header {
+        font-size: 8px;
+    }
+    
+    .terminal-output p, .terminal-input-line, #terminal-input {
+        font-size: 16px;
+    }
+    
+    .tech-icon i {
+        font-size: 24px;
+    }
+    
+    /* Show mobile command buttons on small screens */
+    .mobile-commands {
+        display: flex;
+    }
+}
+
+/* Animations for command responses */
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.glitch {
+    animation: glitch 0.3s linear 3;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-5px, 5px);
+    }
+    40% {
+        transform: translate(-5px, -5px);
+    }
+    60% {
+        transform: translate(5px, 5px);
+    }
+    80% {
+        transform: translate(5px, -5px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Access Denied Animation */
+.access-denied {
+    color: #f00;
+    font-weight: bold;
+    animation: shake 0.5s linear;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Git log styling */
+.git-log {
+    font-family: monospace;
+    margin-left: 15px;
+}
+
+.git-hash {
+    color: #f39c12;
+    margin-right: 10px;
+}
+
+/* Network response styling */
+.network-response {
+    font-family: monospace;
+}
+
+.ping-time {
+    color: #3498db;
+}
+
+.ping-success {
+    color: #2ecc71;
+}

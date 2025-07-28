@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Document metadata -->  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Nanavati's Terminal</title>
+    <!-- Stylesheets -->  
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main terminal container -->  
+    <div class="terminal-container">
+        <!-- Terminal window header with control buttons -->  
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+            </div>
+            <div class="terminal-title">terminal@akash:~</div>
+        </div>
+        <!-- Terminal content area -->  
+        <div class="terminal">
+            <!-- ASCII art header -->  
+            <div class="ascii-header" id="ascii-header"></div>
+            <!-- Terminal output display area -->  
+            <div class="terminal-output" id="terminal-output">
+                <p>Welcome to Akash Nanavati's Terminal v1.0.0</p>
+                <p>Type 'help' to see available commands</p>
+            </div>
+            <!-- Terminal input line with prompt and cursor -->  
+            <div class="terminal-input-line">
+                <span class="terminal-prompt">user@akash:~$</span>
+                <input type="text" id="terminal-input" autofocus>
+                <span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology stack marquee display -->  
+    <div class="tech-stack-marquee">
+        <div class="marquee-content">
+            <!-- Technology icons with labels -->  
+            <div class="tech-icon">
+                <i class="fab fa-react"></i>
+                <span>React</span>
+            </div>
+            <div class="tech-icon">
+                <i class="fab fa-node-js"></i>
+                <span>Node.js</span>
+            </div>
+            <div class="tech-icon">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="tech-icon">
+                <i class="fab fa-docker"></i>
+                <span>Docker</span>
+            </div>
+            <div class="tech-icon">
+                <i class="fab fa-js"></i>
+                <span>JavaScript</span>
+            </div>
+            <div class="tech-icon">
+                <i class="fab fa-html5"></i>
+                <span>HTML5</span>
+            </div>
+            <div class="tech-icon">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS3</span>
+            </div>
+            <div class="tech-icon">
+                <i class="fab fa-git-alt"></i>
+                <span>Git</span>
+            </div>
+            <div class="tech-icon">
+                <i class="fas fa-database mongodb-icon"></i>
+                <span>MongoDB</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Easter egg modal for special interactions -->
+    <div id="easter-egg-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="easter-egg-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
